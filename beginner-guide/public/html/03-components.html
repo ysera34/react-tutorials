@@ -1,0 +1,31 @@
+<div id="root"></div>
+<script src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+<script type="text/babel">
+    const rootElement = document.getElementById('root')
+    const helloWorld = <div>Hello World</div>
+    const message = (props) => <div>{props.msg}</div>
+    const Message = (props) => <div>{props.children}</div>
+    const element = (
+        <div className="container">
+            {helloWorld}
+            {helloWorld}
+            {message({msg: 'Hello World'})}
+            {message({msg: 'Goodbye World'})}
+            {React.createElement(message, {msg: 'Hello World'})}
+            {React.createElement(message, {msg: 'Goodbye World'})}
+            <Message children="Hello World" />
+            <Message children="Goodbye World" />
+            <Message>Hello World</Message>
+            <Message>Goodbye World</Message>
+            <Message>
+                Hello World
+                <Message>Goodbye World</Message>
+            </Message>
+
+        </div>
+    )
+    console.log(element)
+    ReactDOM.render(element, rootElement)
+</script>

@@ -1,0 +1,94 @@
+<div id="root"></div>
+<script src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.6.0/prop-types.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+<script type="text/babel">
+/*
+    const rootElement = document.getElementById('root')
+
+    function SayHello(props) {
+        return (
+            <div>
+                Hello {props.firstName}{' '} {props.lastName || 'Unknown'}!
+            </div>
+        )
+    }
+    const element = <SayHello firstName={true} />
+
+    // const PropTypes = {
+    //     string(props, propName, componentName) {
+    //         if (typeof props[propName] !== 'string') {
+    //             return new Error(
+    //                 `Hey, you should pass a string for ${propName} in ${componentName} but you passed a ${typeof props[propName]}!`
+    //             )
+    //         }
+    //     },
+    // }
+
+    SayHello.propTypes = {
+        // firstName(props, propName, componentName) {
+        //     if (typeof props[propName] !== 'string') {
+        //         return new Error(
+        //             `Hey, you should pass a string for ${propName} in ${componentName} but you passed a ${typeof props[propName]}!`
+        //         )
+        //     }
+        // },
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+    }
+
+    console.log(element)
+    ReactDOM.render(element, rootElement)
+*/
+/*
+    class SayHello extends React.Component {
+        render() {
+            const {firstName, lastName} = this.props
+            return (
+                <div>
+                    Hello {firstName} {lastName}!
+                </div>
+            )
+        }
+    }
+
+    SayHello.propTypes = {
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+    }
+
+    ReactDOM.render(
+        <SayHello firstName={true} />,
+        document.getElementById('root')
+    )
+*/
+    function SayHelloAsFunction(props) {
+        return (
+            <div>
+                Hello {firstName} {lastName}!
+            </div>
+        )
+    }
+
+    SayHelloAsFunction.propTypes = {
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+    }
+
+    class SayHelloAsClass extends React.Component {
+        static propTypes= {
+            firstName: PropTypes.string.isRequired,
+            lastName: PropTypes.string.isRequired,
+        }
+        render() {
+            const {firstName, lastName} = this.props
+            return (
+                <div>
+                    Hello {firstName} {lastName}!
+                </div>
+            )
+        }
+    }
+</script>

@@ -1,0 +1,123 @@
+<div id="root"></div>
+<script src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.6.0/prop-types.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+<style>
+    .box {
+        border: 1px solid #333;
+    }
+
+    .box--large {
+        width: 180px;
+        height: 180px;
+    }
+
+    .box--medium {
+        width: 120px;
+        height: 120px;
+    }
+
+    .box--small {
+        width: 60px;
+        height: 60px;
+    }
+</style>
+<script type="text/babel">
+    const props = {
+      className: 'box box--small',
+      style: {paddingLeft: 20},
+    }
+    const element = (
+      <div>
+        <div
+          className="box box--small"
+          style={{paddingLeft: '20px'}}>box</div>
+        <div style={{paddingLeft: 20}}>box</div>
+        <div {...props}>box</div>
+      </div>
+    )
+
+    function Box(props) {
+      return (
+        <div
+          className="box box--small"
+          style={{paddingLeft: 20}}
+          {...props}
+        />
+      )
+    }
+
+    function Box1({style, className, ...rest}) {
+      return (
+        <div
+          className={`box ${className}`}
+          style={{paddingLeft: 20, ...style}}
+          {...rest}
+        />
+      )
+    }
+
+    function Box2({style, className='', ...rest}) {
+      return (
+        <div
+          className={`box ${className}`.trim()}
+          style={{paddingLeft: 20, ...style}}
+          {...rest}
+        />
+      )
+    }
+
+    function Box3({style, size, className='', ...rest}) {
+      const sizeClassName = size ? `box--${size}` : ''
+      return (
+        <div
+          className={`box ${className} ${sizeClassName}`.trim()}
+          style={{paddingLeft: 20, ...style}}
+          {...rest}
+        />
+      )
+    }
+
+    const element1 = (
+      <div>
+        <Box style={{backgroundColor: 'lightblue'}}>small box</Box>
+        <Box1
+          className="box--small"
+          style={{backgroundColor: 'lightblue'}}
+        >
+          small box
+        </Box1>
+        <Box2
+          style={{backgroundColor: 'lightblue'}}
+        >
+          small box
+        </Box2>
+        <Box3
+          size="small"
+          style={{backgroundColor: 'lightblue'}}
+        >
+          small box
+        </Box3>
+        <Box3
+          size="medium"
+          style={{backgroundColor: 'pink'}}
+        >
+          medium box
+        </Box3>
+        <Box3
+          size="large"
+          style={{backgroundColor: 'orange'}}
+        >
+          large box
+        </Box3>
+      </div>
+    )
+
+    ReactDOM.render(
+      // element,
+      element1,
+      document.getElementById('root')
+    )
+</script>

@@ -1,0 +1,62 @@
+<div id="root"></div>
+<script src="https://unpkg.com/react@16.0.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/prop-types@15.6.0/prop-types.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+<style>
+    .box {
+        border: 1px solid #333;
+        width: 20px;
+        height: 20px;
+        margin: 10px;
+    }
+</style>
+<script type="text/babel">
+class Counter extends React.Component {
+  constructor(...arg) {
+    super(...arg)
+    this.state = {count: 0}
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState(({count}) => ({
+      count: count + 1
+    }))
+  }
+  handleClick1 = () => {
+    this.setState(({count}) => ({
+      count: count + 1
+    }))
+  }
+  render() {
+    return (
+      <div>
+        <button
+          className='box'
+          onClick={() =>
+            this.setState(({count}) => ({
+              count: count + 1
+            }))
+          }
+        >
+          {this.state.count}
+        </button>
+        <button
+          className='box'
+          onClick={this.handleClick}>
+          {this.state.count}
+        </button>
+        <button
+          className='box'
+          onClick={this.handleClick1}>
+          {this.state.count}
+        </button>
+      </div>
+    )
+  }
+}
+ReactDOM.render(
+  <Counter />,
+  document.getElementById('root')
+)
+</script>

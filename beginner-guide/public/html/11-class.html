@@ -60,3 +60,18 @@ ReactDOM.render(
   document.getElementById('root')
 )
 </script>
+<script type="text/javascript">
+    var bob = {
+      name: 'Bob',
+      greet(name) {
+        return `Hi ${name}, my name is ${this.name}!`
+      }
+    }
+    console.log(bob.greet('Jane'))
+
+    var greetFn = bob.greet
+    console.log(greetFn('Jane'))
+
+    var greetFn = bob.greet.bind(bob)
+    console.log(greetFn('Jane'))
+</script>
